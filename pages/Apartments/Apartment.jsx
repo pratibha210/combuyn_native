@@ -298,7 +298,7 @@ React.useEffect(() => {
 
       // console.log(data, "appartmentList");
       // if (searchValue && searchValue.length >= 3) {
-      const arr = data.sort((a, b) => {
+      const arr =data && data.length > 0 && data.sort((a, b) => {
         if (a.name < b.name) {
           return -1;
         }
