@@ -38,6 +38,18 @@ const TabStack =()=> {
           borderBottomColor: '#87B56A',
           borderBottomWidth: 2,
         },
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = focused
+              ? 'ios-home-outline'
+              : 'ios-information-circle-outline';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
       }}>
       <Tab.Screen
         name="Home"
