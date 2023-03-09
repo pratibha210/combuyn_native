@@ -112,7 +112,8 @@ export default StyleSheet.create({
         marginBottom: 30,
     },
     productSection:{
-        paddingVertical: 50,
+        paddingTop: 50,
+        paddingBottom:30,
         paddingHorizontal:15,
         backgroundColor: '#f5f5f5',
     },
@@ -184,6 +185,64 @@ export default StyleSheet.create({
         fontSize: 16,
     },
 
+    /**
+     * Testimonial Slider
+     */
+
+    testimonialSection:{
+        paddingVertical:50,
+        paddingHorizontal:15
+    },
+    testimonialHeading:{
+        fontSize:24,
+        marginBottom: 20,
+        textAlign: 'center',
+        color: 'white'
+    },
+    testimonialItem: {
+        marginEnd: 10
+    },
+    testititle: {
+        fontSize: 32,
+    },
+    testipara:{
+        fontSize:15,
+        lineHeight: 22,
+        textAlign: 'center',
+        color: 'white',
+        marginBottom: 20
+    },
+    testititle:{
+        fontSize: 14,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        color: 'white'
+    },
+    sliderDotsWrap:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingVertical: 10
+    },
+    sliderDots:{
+        width:8,
+        height:4,
+        borderRadius: 2,
+        backgroundColor: '#000',
+        marginHorizontal: 4
+    },
+    testiOverlaly:{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0,
+        backgroundColor: 'black',
+        opacity: 0.35,
+        zIndex: -1
+    },
+    testiZindex:{
+        zIndex:11
+    },
 
     /**
      * Footer

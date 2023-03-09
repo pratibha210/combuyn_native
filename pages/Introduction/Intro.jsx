@@ -1,21 +1,64 @@
-import React from "react";
-import { SafeAreaView, Image, StyleSheet, Pressable, Text, View, Button, ImageBackground, StatusBar, PreviewLayout, ScrollView } from 'react-native';
+import React, { useState } from "react";
+import { SafeAreaView, Image, StyleSheet, Pressable, Text, View, Button, ImageBackground, StatusBar, PreviewLayout, ScrollView, FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import styles from "./Intro.style";
 // import Carousel from 'react-native-snap-carousel';
-// import { useFonts } from "expo-font";
+import { useFonts } from "expo-font";
+
+const { width } = Dimensions.get('window');
+const item_size = width * 0.92;
+
+const sliderData = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Pallavi',
+    des: 'The quality is excellent and is sourced from the grower or manufacturer, so the prices are fair. In the rare instance that we are dissatisfied, they are quick to give a replacement or refund. The variety is very good and seasonal foods and items arrive promptly. Thank you for making life easy for us. I am happy to be a part of the Combuyn family.'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Sharnam',
+    des: "I've been ordering all my groceries online via multiple platforms, but there is a reason why Combuyn is my favorite... freshness & quality is always ensured. From veggies to made-to-order cheese, from seafood to freshly baked bread, combuyn is my one stop shop for all my daily needs. I really like the personal touch to customer service too- folks at Combuyn are always reachable for any issues. Keep on keeping on, Combuyn team!"
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Mukesh',
+    des: 'Always of the best quality and timely delivery.'
+  },
+];
+
+const Item = ({ item }) => (
+  <TouchableOpacity disabled={true} style={[styles.testimonialItem, { width: item_size }]}>
+    <Text style={[styles.testipara, poppisFont.medium]}>{item.des}</Text>
+    <Text style={[styles.testititle, poppisFont.semibold]}>{item.title}</Text>
+  </TouchableOpacity>
+);
+
 
 
 export default function Intro(props) {
+  // font
+  const [loaded] = useFonts({
+    'PoppinsRegular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'PoppinsMedium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'PoppinsSemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+  })
 
-  // const [loaded] = useFonts({
-  //   'PoppinsRegular': require('../../assets/fonts/Poppins-Regular.ttf'),
-  //   'PoppinsMedium': require('../../assets/fonts/Poppins-Medium.ttf'),
-  //   'PoppinsSemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  // })
+  //slider
+  const [selectedId, setSelectedId] = useState();
+  const [currentIndex, setcurrentIndex] = useState(0);
+  const renderItem = ({ item }) => {
+    return (
 
-  // if (!loaded) {
-  //   return null;
-  // }
+      <Item
+        item={item}
+      // onPress={() => setSelectedId(item.id)}
+      />
+    );
+  };
+
+
+  if (!loaded) {
+    return null;
+  }
   return (
     <>
       <ScrollView>
@@ -36,7 +79,7 @@ export default function Intro(props) {
               style={styles.container}
             >
               <Text
-                style={[styles.bannerHeading]}
+                style={[styles.bannerHeading, poppisFont.regular]}
               >
                 Live Together, Buy Together
               </Text>
@@ -211,13 +254,49 @@ export default function Intro(props) {
         </SafeAreaView>
 
         <SafeAreaView>
-          {/* <Carousel
-            ref={(c) => { this._carousel = c; }}
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-          /> */}
+          <ImageBackground
+            style={styles.testimonialSection}
+            source={require('../../assets/images/testimonial_bg.png')}>
+            <View>
+              <Text style={[styles.testimonialHeading, poppisFont.medium]}>What our customers say</Text>
+            </View>
+
+            <View style={styles.testimonialWrap}>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                data={sliderData}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                extraData={selectedId}
+                snapToInterval={item_size}
+                decelerationRate={0}
+                bounces={false}
+                onScroll={e => {
+                  const x = e.nativeEvent.contentOffset.x;
+                  setcurrentIndex((x / width).toFixed(0))
+                }}
+
+                scrollEventThrottle={16}
+                contentContainerStyle={{
+                  justifyContent: 'center'
+                }}
+              />
+            </View>
+            <View style={styles.sliderDotsWrap}>
+              {sliderData?.map((item, index) => {
+                return (
+                  <View key={index} style={[styles.sliderDots, {
+                    backgroundColor: currentIndex == index ? '#ff811a' : '#ff811a',
+                    opacity: currentIndex == index ? 1 : 0.5
+                  }]}>
+                  </View>
+                )
+              })}
+            </View>
+            <View style={styles.testiOverlaly}></View>
+          </ImageBackground>
         </SafeAreaView>
 
         <SafeAreaView>
@@ -252,14 +331,14 @@ export default function Intro(props) {
   );
 }
 
-// const poppisFont = StyleSheet.create({
-//   regular: {
-//     fontFamily: 'PoppinsRegular'
-//   },
-//   medium: {
-//     fontFamily: 'PoppinsMedium'
-//   },
-//   semibold: {
-//     fontFamily: 'PoppinsSemiBold'
-//   }
-// });
+const poppisFont = StyleSheet.create({
+  regular: {
+    fontFamily: 'PoppinsRegular'
+  },
+  medium: {
+    fontFamily: 'PoppinsMedium'
+  },
+  semibold: {
+    fontFamily: 'PoppinsSemiBold'
+  }
+});
