@@ -38,7 +38,7 @@ export default function Apartment(props) {
       const value = await AsyncStorage.getItem('appartmentId');
       if (value !== null) {
         // We have data!!
-        console.log(value);
+        // console.log(value);
         setLocalappartmentId(value)
       }
     } catch (error) {
@@ -47,10 +47,10 @@ export default function Apartment(props) {
   };
   const retrievecartData = async () => {
     try {
-      const value = await AsyncStorage.getItem('cartProduct');
+      const value = await JSON.parse(AsyncStorage.getItem('cartProduct'));
       if (value !== null) {
         // We have data!!
-        console.log(value);
+        // console.log(value);
         setCartProduct(value)
       }
     } catch (error) {
@@ -63,7 +63,7 @@ export default function Apartment(props) {
       const value = await AsyncStorage.getItem('appartmentName');
       if (value !== null) {
         // We have data!!
-        console.log(value);
+        // console.log(value);
         setlocalAppartmentName(value)
       }
     } catch (error) {
@@ -78,7 +78,7 @@ export default function Apartment(props) {
       const value = await AsyncStorage.getItem('loginDet');
       if (value !== null) {
         // We have data!!
-        console.log(value);
+        // console.log(value);
         setLoginDetails(value)
       }
     } catch (error) {
@@ -160,6 +160,10 @@ export default function Apartment(props) {
    */
   const getcampaignAPIcallFunc = () => {
     // e.preventDefault();
+
+    AsyncStorage.setItem("appartmentId", localAppId);
+    AsyncStorage.setItem("appartmentName", appartmentName);
+
     axios
       .get(
         BASE_URL +
@@ -168,11 +172,11 @@ export default function Apartment(props) {
           "&status=Active"
       )
       .then((res) => {
-        // console.log(res, "res");
-        if (res) {
+        if (res.data) {
         
-          let arr =cartProduct && cartProduct;
+          let arr =cartProduct ;
           let newArr = [];
+          if(arr.length > 0){
           arr &&
             arr.length > 0 &&
             arr.map((item) => {
@@ -190,14 +194,15 @@ export default function Apartment(props) {
                 })
               );
             });
-          // console.log(newArr,"newArr")
-          AsyncStorage.setItem("cartProduct", JSON.stringify(newArr));
-          res.data = res.data.sort((a, b) => a.order - b.order);
-          AsyncStorage.setItem("campaigns", JSON.stringify(res.data));
-          AsyncStorage.setItem("appartmentName", appartmentName);
-          AsyncStorage.setItem("appartmentId", localAppId);
+          }else{
+            newArr= res.data
+          }
+          // res.data = res.data.sort((a, b) => a.order - b.order);
 
-          props.navigation.replace("Home");
+          AsyncStorage.setItem("cartProduct", JSON.stringify(newArr));
+          AsyncStorage.setItem("campaigns", JSON.stringify(res.data));
+
+          props.navigation.replace('Home');
           setAppartment({});
         }
       })
