@@ -7,15 +7,24 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { RadioButton, TextInput, Appbar } from 'react-native-paper';
+import { useFonts } from "expo-font";
+
 
 export default function Apartment(props) {
+  // font
+  const [loaded] = useFonts({
+    'PoppinsRegular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'PoppinsMedium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'PoppinsSemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+  })
+
   // const [value, setValue] = useState(null);
   const [apartmentList, setApartmentList] = useState([]);
   // const [checked, setChecked] = React.useState('first');
   const [searchInput, setSearchInput] = useState("");
 
   const BASE_URL = Environment.BASE_URL;
-// console.log(props.navigation,'gfyfff');
+  // console.log(props.navigation,'gfyfff');
 
   const [errorMessage, setErrorMessage] = React.useState("");
   const [appartmentId, setAppartment] = useState({});
@@ -86,7 +95,7 @@ export default function Apartment(props) {
     }
   };
 
-// console.log(localAppId,"localAppId");
+  // console.log(localAppId,"localAppId");
   useEffect(() => {
     retrieveData();
     retrievecartData();
@@ -125,7 +134,7 @@ export default function Apartment(props) {
         setNvigateLoader(false);
       }, 3000);
       props.navigation.replace("Home");
-    } else if ( props?.route?.params?.state == "success") {
+    } else if (props?.route?.params?.state == "success") {
       setTimeout(() => {
         setNvigateLoader(false);
       }, 3000);
@@ -136,7 +145,7 @@ export default function Apartment(props) {
     }
   }, []);
 
- 
+
 
   /**
    * get appart list api call
@@ -163,15 +172,15 @@ export default function Apartment(props) {
     axios
       .get(
         BASE_URL +
-          "campaigns?apartment=" +
-          localAppId +
-          "&status=Active"
+        "campaigns?apartment=" +
+        localAppId +
+        "&status=Active"
       )
       .then((res) => {
         // console.log(res, "res");
         if (res) {
-        
-          let arr =cartProduct && cartProduct;
+
+          let arr = cartProduct && cartProduct;
           let newArr = [];
           arr &&
             arr.length > 0 &&
@@ -228,63 +237,63 @@ export default function Apartment(props) {
 
 
 
-/**
-   * get appart list api function
+  /**
+     * get appart list api function
+     */
+
+  const getAppartmentApifunction = () => {
+    setIsLoading(true);
+    axios
+      .get(BASE_URL + "apartments")
+      .then((res) => {
+        setIsLoading(false);
+        // console.log(res?.data, "res");
+
+        if (res) {
+          const arr = res.data.sort((a, b) => {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          });
+
+          setApartmentList(arr);
+          // AsyncStorage.setItem("appartments", JSON.stringify(arr));
+        }
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setErrorMessage(err.message);
+      });
+  };
+
+  /**
+   * get appart list api call
    */
 
- const getAppartmentApifunction = () => {
-  setIsLoading(true);
-  axios
-    .get(BASE_URL + "apartments")
-    .then((res) => {
-      setIsLoading(false);
-      // console.log(res?.data, "res");
-
-      if (res) {
-        const arr = res.data.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          }
-          if (a.name > b.name) {
-            return 1;
-          }
-          return 0;
-        });
-
-        setApartmentList(arr);
-        // AsyncStorage.setItem("appartments", JSON.stringify(arr));
-      }
-    })
-    .catch((err) => {
-      setIsLoading(false);
-      setErrorMessage(err.message);
-    });
-};
-
-/**
- * get appart list api call
- */
-
-React.useEffect(() => {
-  getAppartmentApifunction();
-}, [props]);
+  React.useEffect(() => {
+    getAppartmentApifunction();
+  }, [props]);
 
 
-  
+
   /**
    *
    * @param {string} searchValue @appartment search function
    */
 
-   const searchItems = (searchValue) => {
+  const searchItems = (searchValue) => {
     // console.log(searchValue, "searchValue");
     setIsLoading(false);
     setSearchInput(searchValue);
     if (searchValue.length >= 1) {
       let data =
-      apartmentList &&
-      apartmentList.length > 0 &&
-      apartmentList.filter((item) => {
+        apartmentList &&
+        apartmentList.length > 0 &&
+        apartmentList.filter((item) => {
           return Object.values(item)
             .join("")
             .toLowerCase()
@@ -310,19 +319,22 @@ React.useEffect(() => {
     }
   };
 
+  if (!loaded) {
+    return null;
+  }
   return (
     <>
-     
+
       <Appbar.Header>
         <Appbar.BackAction onPress={() => props.navigation.navigate('Introduction')} />
-        <Appbar.Content style={styles.headerText} title="Apartment" titleStyle={styles.headerTextTtile} />
+        <Appbar.Content style={styles.headerText} title="Apartment" titleStyle={[styles.headerTextTtile, poppisFont.medium]} />
       </Appbar.Header>
 
       <View style={styles.apartmentSearch}>
-        <Text style={styles.apartmentSearchText}>Select your Apartment</Text>
+        <Text style={[styles.apartmentSearchText, poppisFont.regular]}>Select your Apartment</Text>
         <View>
           <TextInput
-           onChangeText={(e) => searchItems(e)}
+            onChangeText={(e) => searchItems(e)}
             style={styles.searchInput}
             mode="outlined"
             label="Search Apartment"
@@ -335,9 +347,8 @@ React.useEffect(() => {
       <ScrollView style={styles.appartment_list}>
         {apartmentList && apartmentList?.length > 0 && apartmentList.map((x, index) => {
           return (
-            <RadioButton.Group  key={x.id}  onValueChange={() => onSelectAppart(x)} value={localAppId}>
-              <RadioButton.Item style={styles.radio_list} label={x.name} value={x.id} />
-              {/* <RadioButton.Item style={styles.radio_list} label="Second item" value="second" /> */}
+            <RadioButton.Group key={x.id} onValueChange={() => onSelectAppart(x)} value={localAppId}>
+              <RadioButton.Item style={[styles.radio_list, poppisFont.regular]} label={x.name} value={x.id} />
             </RadioButton.Group>
           )
         })}
@@ -345,13 +356,13 @@ React.useEffect(() => {
       </ScrollView>
 
       <Appbar style={styles.appartmentBottom}>
-        <Text style={styles.totalApartmentsText}>17 residents from your apartments are already part of Combuyn community</Text>
+        <Text style={[styles.totalApartmentsText, poppisFont.regular]}>17 residents from your apartments are already part of Combuyn community</Text>
 
         <Pressable
           style={styles.appartmentButton}
           onPress={() => getcampaignAPIcallFunc()}
         >
-          <Text style={styles.appartmentButtonText}
+          <Text style={[styles.appartmentButtonText, poppisFont.medium]}
           >Continue</Text>
         </Pressable>
 
@@ -362,3 +373,14 @@ React.useEffect(() => {
   );
 }
 
+const poppisFont = StyleSheet.create({
+  regular: {
+    fontFamily: 'PoppinsRegular'
+  },
+  medium: {
+    fontFamily: 'PoppinsMedium'
+  },
+  semibold: {
+    fontFamily: 'PoppinsSemiBold'
+  }
+});

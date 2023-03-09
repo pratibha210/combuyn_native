@@ -84,14 +84,14 @@ export default function Intro(props) {
                 Live Together, Buy Together
               </Text>
               <Text
-                style={[styles.bannerSubHeading]}
+                style={[styles.bannerSubHeading, poppisFont.regular]}
               >
                 We enable communities to enjoy the benefits of group buying with utmost ease
               </Text>
               <Pressable
                 onPress={() => props.navigation.navigate("Apartment")}
                 style={styles.bannerButton}>
-                <Text style={[styles.bannerButtonText]}
+                <Text style={[styles.bannerButtonText, poppisFont.regular]}
                 >Order Now</Text>
               </Pressable>
             </View>
@@ -103,7 +103,7 @@ export default function Intro(props) {
             style={styles.benefits}
           >
             <Text
-              style={[styles.benefitsHeading]}
+              style={[styles.benefitsHeading, poppisFont.regular]}
             >Benefits of Community Buying</Text>
 
             <View style={styles.row}>
@@ -112,8 +112,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits1.png')}
                 />
-                <Text style={styles.benefitsTitle}>Get fresher products from trusted makers</Text>
-                <Text style={styles.benefitsPara}>Exclusive batch preparation for ComBuyn communities</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>Get fresher products from trusted makers</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>Exclusive batch preparation for ComBuyn communities</Text>
               </View>
 
               <View style={styles.col_6}>
@@ -121,8 +121,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits2.png')}
                 />
-                <Text style={styles.benefitsTitle}>Competitive pricing</Text>
-                <Text style={styles.benefitsPara}>Buying in bulk is always cheaper</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>Competitive pricing</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>Buying in bulk is always cheaper</Text>
               </View>
 
               <View style={styles.col_6}>
@@ -130,8 +130,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits3.png')}
                 />
-                <Text style={styles.benefitsTitle}>Priorty support</Text>
-                <Text style={styles.benefitsPara}>More power to customers as a community.</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>Priorty support</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>More power to customers as a community.</Text>
               </View>
 
               <View style={styles.col_6}>
@@ -139,8 +139,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits4.png')}
                 />
-                <Text style={styles.benefitsTitle}>No minimum order</Text>
-                <Text style={styles.benefitsPara}>Free doorstep delivery. No minimum order value.</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>No minimum order</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>Free doorstep delivery. No minimum order value.</Text>
               </View>
 
               <View style={styles.col_6}>
@@ -148,8 +148,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits5.png')}
                 />
-                <Text style={styles.benefitsTitle}>Interstate delicacies</Text>
-                <Text style={styles.benefitsPara}>Taste of India delivered doorstep at no extra cost.</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>Interstate delicacies</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>Taste of India delivered doorstep at no extra cost.</Text>
               </View>
 
               <View style={styles.col_6}>
@@ -157,8 +157,8 @@ export default function Intro(props) {
                   style={styles.benefitsImg}
                   source={require('../../assets/images/benefits6.png')}
                 />
-                <Text style={styles.benefitsTitle}>Trusted feedback</Text>
-                <Text style={styles.benefitsPara}>Get genuine feedback and reviews from community members.</Text>
+                <Text style={[styles.benefitsTitle, poppisFont.medium]}>Trusted feedback</Text>
+                <Text style={[styles.benefitsPara, poppisFont.regular]}>Get genuine feedback and reviews from community members.</Text>
               </View>
 
             </View>
@@ -178,8 +178,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img1.jpg')}
                   />
-                  <Text style={styles.productHeading}>Fresh hand-made paneer</Text>
-                  <Text style={styles.productPara}>Super soft paneer procured everyday from Delhi.</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Fresh hand-made paneer</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Super soft paneer procured everyday from Delhi.</Text>
                 </View>
               </View>
 
@@ -189,8 +189,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img2.jpg')}
                   />
-                  <Text style={styles.productHeading}>Fresh bakes</Text>
-                  <Text style={styles.productPara}>Range of breads/cookies freshly baked just a few hours before delivery</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Fresh bakes</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Range of breads/cookies freshly baked just a few hours before delivery</Text>
                 </View>
               </View>
 
@@ -200,8 +200,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img3.jpg')}
                   />
-                  <Text style={styles.productHeading}>Fresh Chakki Atta</Text>
-                  <Text style={styles.productPara}>Range of breads/cookies freshly baked just a few hours before delivery</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Fresh Chakki Atta</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Range of breads/cookies freshly baked just a few hours before delivery</Text>
                 </View>
               </View>
 
@@ -211,8 +211,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img4.jpg')}
                   />
-                  <Text style={styles.productHeading}>Fruits & Vegetables</Text>
-                  <Text style={styles.productPara}>Imported and seasonal range of fruits/Vegetables procured daily from Farmer’s market in bulk.</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Fruits & Vegetables</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Imported and seasonal range of fruits/Vegetables procured daily from Farmer’s market in bulk.</Text>
                 </View>
               </View>
 
@@ -222,8 +222,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img5.jpg')}
                   />
-                  <Text style={styles.productHeading}>Cold pressed oils</Text>
-                  <Text style={styles.productPara}>Range of traditionally milled cold pressed oils, ghee and butter.</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Cold pressed oils</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Range of traditionally milled cold pressed oils, ghee and butter.</Text>
                 </View>
               </View>
 
@@ -233,8 +233,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_img6.jpg')}
                   />
-                  <Text style={styles.productHeading}>Regional savories</Text>
-                  <Text style={styles.productPara}>Authentic taste from a highly curated set of makers.</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Regional savories</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Authentic taste from a highly curated set of makers.</Text>
                 </View>
               </View>
 
@@ -244,8 +244,8 @@ export default function Intro(props) {
                     style={styles.productImg}
                     source={require('../../assets/images/product_india.jpg')}
                   />
-                  <Text style={styles.productHeading}>Interstate specialities</Text>
-                  <Text style={styles.productPara}>Delhi Gazak. Bikaner pickles, Kerala chips, Agra Petha and many more.</Text>
+                  <Text style={[styles.productHeading, poppisFont.semibold]}>Interstate specialities</Text>
+                  <Text style={[styles.productPara, poppisFont.regular]}>Delhi Gazak. Bikaner pickles, Kerala chips, Agra Petha and many more.</Text>
                 </View>
               </View>
 
@@ -304,13 +304,13 @@ export default function Intro(props) {
             source={require('../../assets/images/community_banner.jpg')}
             style={styles.communityImage}
           >
-            <View style={styles.community}>
-              <Text style={styles.communityHeading}>Join the community</Text>
-              <Text style={styles.communityPara}>Join your neighbours in becoming part of the Combuyn community and get access to our range of curated and high quality products with all the benefits of group buying !</Text>
+            <View style={[styles.community, poppisFont.regular]}>
+              <Text style={[styles.communityHeading, poppisFont.regular]}>Join the community</Text>
+              <Text style={[styles.communityPara, poppisFont.regular]}>Join your neighbours in becoming part of the Combuyn community and get access to our range of curated and high quality products with all the benefits of group buying !</Text>
               <Pressable
                 onPress={() => props.navigation.navigate("Apartment")}
                 style={styles.communityButton}>
-                <Text style={styles.communityButtonText}
+                <Text style={[styles.communityButtonText, poppisFont.regular]}
                 >Explore Now</Text>
               </Pressable>
             </View>
@@ -323,7 +323,7 @@ export default function Intro(props) {
               style={styles.footerImg}
               source={require('../../assets/images/logo.png')}
             />
-            <Text style={styles.footerCopy}>© 2023 Combuyn. All Rights Reserved.</Text>
+            <Text style={[styles.footerCopy, poppisFont.regular]}>© 2023 Combuyn. All Rights Reserved.</Text>
           </View>
         </SafeAreaView>
       </ScrollView>
