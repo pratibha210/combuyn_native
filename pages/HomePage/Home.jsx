@@ -2,19 +2,28 @@ import { ScrollView, StyleSheet, Text, Image, Button, View, FlatList, Pressable,
 import React, { useState, useEffect } from "react";
 import styles from "./Home.style";
 import Environment from "../../Environment";
+
 import axios from "axios";
 // import CardView from "react-native-cardview";
 // import { AsyncStorage } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-
 import { Card, Title, Paragraph } from "react-native-paper";
-
 import { } from "react-native-web";
+import { useFonts } from "expo-font";
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Home(props) {
+  // font
+  const [loaded] = useFonts({
+    'PoppinsRegular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'PoppinsMedium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'PoppinsSemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+  })
+
   const width = Dimensions.get('window').width;
+
 
   console.log(props, "pros");
   const [campaignList, setCampaignList] = useState([]);
@@ -75,6 +84,9 @@ export default function Home(props) {
       .catch((err) => { });
   }, [appartmentId]);
 
+  if (!loaded) {
+    return null;
+  }
   return (
     <>
       <View style={styles.homeHeader}>
@@ -84,7 +96,7 @@ export default function Home(props) {
               style={styles.homeHeadLogo}
               source={require('../../assets/images/logo.png')}
             />
-            <Text style={styles.apart_name}>Ajmera Infinity</Text>
+            <Text style={[styles.apart_name, poppisFont.regular]}>Ajmera Infinity <FontAwesome style={styles.fontIcon} name="angle-down" size={14} color="#007cb2" /></Text>
           </View>
 
           <View style={styles.headerRightButton}>
@@ -138,3 +150,16 @@ export default function Home(props) {
     </>
   );
 }
+
+
+const poppisFont = StyleSheet.create({
+  regular: {
+    fontFamily: 'PoppinsRegular'
+  },
+  medium: {
+    fontFamily: 'PoppinsMedium'
+  },
+  semibold: {
+    fontFamily: 'PoppinsSemiBold'
+  }
+});

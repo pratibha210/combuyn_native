@@ -43,7 +43,10 @@ export default StyleSheet.create({
         alignItems: 'center',
         fontSize: 12,
         lineHeight: 14,
-        color: '#007cb2'
+        color: '#007cb2',
+        display:'flex',
+    },
+    fontIcon:{
     },
 
     /**

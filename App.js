@@ -14,6 +14,7 @@ import CampaignDetails from "./pages/Campains/CampaignDetails";
 import Addaddress from "./pages/Profile/Addaddress";
 import AddressList from "./pages/Profile/AddressList";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from '@expo/vector-icons';
 
 import Profile from "./pages/Profile/Profile";
 const Tab = createBottomTabNavigator();
@@ -24,7 +25,7 @@ const Stack = createNativeStackNavigator();
 const TabStack =()=> {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({ route }) => ({
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#F8F8F8',
         tabBarStyle: {
@@ -50,7 +51,7 @@ const TabStack =()=> {
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-      }}>
+      })}>
       <Tab.Screen
         name="Home"
         component={Home}
