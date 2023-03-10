@@ -67,7 +67,7 @@ export default function Profile(props) {
         <Text>{userData?.user?.orderCount ? userData?.user?.orderCount : 0 }{"Order"}</Text>
         <Button title="Address"  onPress={()=> props.navigation.navigate("AddressList")}/>
         <Text> </Text>
-        <Button title="Logout"  onPress={()=> {onLogoutFunc()}}/>
+        <Button title="Logout"  onPress={()=> onLogoutFunc()}/>
 
       </View>
     </>

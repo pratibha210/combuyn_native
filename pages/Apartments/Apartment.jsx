@@ -100,7 +100,7 @@ export default function Apartment(props) {
     }
   };
 
-  // console.log(localAppId,"localAppId");
+  // console.log(localappartmentId,"localAppId");
   useEffect(() => {
     retrieveData();
     retrievecartData();
@@ -118,11 +118,22 @@ export default function Apartment(props) {
       setTimeout(() => {
         setSuccessMessage("");
       }, 3000);
-    } else {
+    } 
+    else {
       setLocalAppId(localappartmentId);
       setAppartmentName(localAppartmentName);
     }
   }, [appartmentId || localappartmentId]);
+
+
+  useEffect(()=>{
+    if(localappartmentId){
+    setAppartmentName(localAppartmentName);
+    setLocalAppId(localappartmentId);
+    AsyncStorage.setItem("appartmentId", localappartmentId);
+    AsyncStorage.setItem("appartmentName", localAppartmentName);
+    }
+  },[localappartmentId])
 
   //// make restriction condition for redirection ///
 

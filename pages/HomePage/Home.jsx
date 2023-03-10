@@ -25,10 +25,10 @@ export default function Home(props) {
   const width = Dimensions.get('window').width;
 
 
-  console.log(props, "pros");
+  // console.log(props, "pros");
   const [campaignList, setCampaignList] = useState([]);
   const [appartmentId, setApartmentId] = useState('')
-
+const [apartmentName,setApartmentName] = useState('');
   const BASE_URL = Environment.BASE_URL;
   const appId = props.route.params;
   const [visible, setVisible] = useState(false);
@@ -47,7 +47,7 @@ export default function Home(props) {
       const value = await AsyncStorage.getItem('appartmentId');
       if (value !== null) {
         // We have data!!
-        console.log(value);
+        // console.log(value);
         setApartmentId(value)
       }
     } catch (error) {
@@ -55,9 +55,22 @@ export default function Home(props) {
     }
   };
 
+  const retrieveApartmentName = async () => {
+    try {
+      const value = await AsyncStorage.getItem('appartmentName');
+      if (value !== null) {
+        // We have data!!
+        // console.log(value);
+        setApartmentName(value)
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
   useEffect(() => {
     retrieveData();
+    retrieveApartmentName();
   }, [props]);
 
 
@@ -96,7 +109,7 @@ export default function Home(props) {
               style={styles.homeHeadLogo}
               source={require('../../assets/images/logo.png')}
             />
-            <Text style={[styles.apart_name, poppisFont.regular]}>Ajmera Infinity <FontAwesome style={styles.fontIcon} name="angle-down" size={14} color="#007cb2" /></Text>
+            <Text onPress={()=> props.navigation.navigate("Apartment")} style={[styles.apart_name, poppisFont.regular]}>{apartmentName} <FontAwesome style={styles.fontIcon} name="angle-down" size={14} color="#007cb2" /></Text>
           </View>
 
           <View style={styles.headerRightButton}>
