@@ -91,13 +91,15 @@ export default StyleSheet.create({
     },
     campaignsListBottomButton:{
         paddingHorizontal:14,
-        paddingVertical:8,
+        paddingTop:8,
+        paddingBottom:6,
         backgroundColor: '#007cb2',
         borderRadius:2,
     },
-    bannerButtonText:{
+    campaignsListBottomButtonText:{
         color: 'white',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        fontSize:11
     },
     campaignsListBottomDate:{
         fontSize:12,

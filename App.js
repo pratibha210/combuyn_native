@@ -14,7 +14,8 @@ import CampaignDetails from "./pages/Campains/CampaignDetails";
 import Addaddress from "./pages/Profile/Addaddress";
 import AddressList from "./pages/Profile/AddressList";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
+import { useFonts } from "expo-font";
 
 import Profile from "./pages/Profile/Profile";
 const Tab = createBottomTabNavigator();
@@ -23,45 +24,70 @@ const Stack = createNativeStackNavigator();
 
 
 const TabStack =()=> {
+  // font
+  const [loaded] = useFonts({
+    'PoppinsRegular': require('./assets/fonts/Poppins-Regular.ttf'),
+    'PoppinsMedium': require('./assets/fonts/Poppins-Medium.ttf'),
+    'PoppinsSemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+  })
+  
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: '#FFFFFF',
-        tabBarInactiveTintColor: '#F8F8F8',
+        tabBarActiveTintColor: '#007cb2',
+        tabBarInactiveTintColor: '#1e1e1e',
         tabBarStyle: {
-          backgroundColor: '#633689',
+          paddingTop:6,
+          backgroundColor: '#fff',
+          height:60,
+          elevation: 12,
+          shadowColor: 'black',
+          shadowOpacity: 1,
+          borderTopColor: 'transparent',
         },
         tabBarLabelStyle: {
           textAlign: 'center',
-          fontSize: 12
+          fontSize: 12,
+          fontFamily: 'PoppinsSemiBold',
+          paddingBottom:6
         },
         tabBarIndicatorStyle: {
           borderBottomColor: '#87B56A',
-          borderBottomWidth: 2,
+          borderBottomWidth: 0,
         },
+        
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-home-outline'
-              : 'ios-information-circle-outline';
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'My Order') {
+            iconName = focused ? 'basket' : 'basket-outline';
           } else if (route.name === 'Profile') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
+          } else if (route.name === 'More') {
+            iconName = focused ? 'ellipsis-horizontal' : 'ellipsis-horizontal-outline';
           }
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={20} color={color} />;
         },
       })}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          // tabBarLabel: 'Home',
           headerShown: false
         }}  />
       <Tab.Screen
+        name="My Order"
+        component={Login}
+        options={{ headerShown: false }} />
+      <Tab.Screen
         name="Profile"
         component={Profile}
+        options={{ headerShown: false }} />
+      <Tab.Screen
+        name="More"
+        component={Addaddress}
         options={{ headerShown: false }} />
     </Tab.Navigator>
   );
@@ -75,11 +101,11 @@ export default function App() {
           <Stack.Navigator>
           <Stack.Screen options={{headerShown: false}} name="Introduction" component={Intro} />
           <Stack.Screen options={{headerShown: false}} name="Apartment" component={Apartment} />
-          <Stack.Screen name="Login" component={Login} />
+          {/* <Stack.Screen name="Login" component={Login} /> */}
           <Stack.Screen name="Register" component={RegisterForm} />
           <Stack.Screen name="OTP" component={Otp} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Address" component={Addaddress} />
+          {/* <Stack.Screen name="Address" component={Addaddress} /> */}
           <Stack.Screen name="AddressList" component={AddressList} />
           <Stack.Screen name="Campaign" component={CampaignDetails} />
           <Stack.Screen

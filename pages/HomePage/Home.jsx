@@ -116,8 +116,16 @@ export default function Home(props) {
       </View>
 
       <ScrollView style={styles.whiteBg}>
-        <View style={styles.campaignsListWrap}>
+        {/* <View>
+          <FlatList>
+            <View><Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi exercitationem dolorum debitis iusto fugiat? Excepturi perferendis quam corrupti, similique id itaque doloremque et assumenda facilis velit porro modi cupiditate magni.</Text></View>
+            <View><Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi exercitationem dolorum debitis iusto fugiat? Excepturi perferendis quam corrupti, similique id itaque doloremque et assumenda facilis velit porro modi cupiditate magni.</Text></View>
+            <View><Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi exercitationem dolorum debitis iusto fugiat? Excepturi perferendis quam corrupti, similique id itaque doloremque et assumenda facilis velit porro modi cupiditate magni.</Text></View>
+          </FlatList>
+        </View> */}
 
+
+        <View style={styles.campaignsListWrap}>
           {campaignList &&
             campaignList.length > 0 &&
             campaignList.map((x) => {
@@ -128,14 +136,14 @@ export default function Home(props) {
                     source={{ uri: x.images[0].link }}
                   />
                   <View style={styles.campaignsListContent}>
-                    <Text style={styles.campaignsListHeading}>{x.name}</Text>
-                    <Text style={styles.campaignsListDetails}>{createMarkup(x.description)}</Text>
+                    <Text style={[styles.campaignsListHeading, poppisFont.medium]}>{x.name}</Text>
+                    <Text style={[styles.campaignsListDetails, poppisFont.regular]}>{createMarkup(x.description)}</Text>
 
                     <View style={styles.campaignsListBottom}>
-                      <Text style={styles.campaignsListBottomDate}>Delivery By - March 9th 2023</Text>
+                      <Text style={[styles.campaignsListBottomDate, poppisFont.medium]}>Delivery By - March 9th 2023</Text>
                       <Pressable style={styles.campaignsListBottomButton}
                         onPress={() => props.navigation.navigate("Campaign", x.id)}>
-                        <Text style={[styles.bannerButtonText]}
+                        <Text style={[styles.campaignsListBottomButtonText, poppisFont.medium]}
                         >Buy Now</Text>
                       </Pressable>
                     </View>
