@@ -14,13 +14,9 @@ import axios from "axios";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-<<<<<<< HEAD
 import { RadioButton, TextInput, Appbar } from 'react-native-paper';
 import { useFonts } from "expo-font";
 
-=======
-import { RadioButton, TextInput, Appbar } from "react-native-paper";
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
 
 export default function Apartment(props) {
   // font
@@ -152,11 +148,6 @@ export default function Apartment(props) {
     }
   }, []);
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
   /**
    * get appart list api call
    */
@@ -184,7 +175,6 @@ export default function Apartment(props) {
     AsyncStorage.setItem("appartmentName", appartmentName);
 
     axios
-<<<<<<< HEAD
       .get(
         BASE_URL +
         "campaigns?apartment=" +
@@ -194,11 +184,6 @@ export default function Apartment(props) {
       .then((res) => {
         if (res.data) {
 
-=======
-      .get(BASE_URL + "campaigns?apartment=" + localAppId + "&status=Active")
-      .then((res) => {
-        if (res.data) {
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
           let arr = cartProduct;
           let newArr = [];
           if (arr.length > 0) {
@@ -220,11 +205,7 @@ export default function Apartment(props) {
                 );
               });
           } else {
-<<<<<<< HEAD
             newArr = res.data
-=======
-            newArr = res.data;
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
           }
           // res.data = res.data.sort((a, b) => a.order - b.order);
 
@@ -253,17 +234,11 @@ export default function Apartment(props) {
   //   props.navigation.navigate("Home", value)
   // }
 
-<<<<<<< HEAD
 
 
   /**
      * get appart list api function
      */
-=======
-  /**
-   * get appart list api function
-   */
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
 
   const getAppartmentApifunction = () => {
     setIsLoading(true);
@@ -293,22 +268,10 @@ export default function Apartment(props) {
         setErrorMessage(err.message);
       });
   };
-<<<<<<< HEAD
 
   /**
    * get appart list api call
    */
-
-  React.useEffect(() => {
-    getAppartmentApifunction();
-  }, [props]);
-
-=======
-
-  /**
-   * get appart list api call
-   */
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
 
   React.useEffect(() => {
     getAppartmentApifunction();
@@ -361,22 +324,10 @@ export default function Apartment(props) {
   }
   return (
     <>
-<<<<<<< HEAD
 
       <Appbar.Header>
         <Appbar.BackAction onPress={() => props.navigation.navigate('Introduction')} />
         <Appbar.Content style={styles.headerText} title="Apartment" titleStyle={[styles.headerTextTtile, poppisFont.medium]} />
-=======
-      <Appbar.Header>
-        <Appbar.BackAction
-          onPress={() => props.navigation.navigate("Introduction")}
-        />
-        <Appbar.Content
-          style={styles.headerText}
-          title="Apartment"
-          titleStyle={styles.headerTextTtile}
-        />
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
       </Appbar.Header>
 
       <View style={styles.apartmentSearch}>
@@ -394,7 +345,6 @@ export default function Apartment(props) {
       </View>
 
       <ScrollView style={styles.appartment_list}>
-<<<<<<< HEAD
         {apartmentList && apartmentList?.length > 0 && apartmentList.map((x, index) => {
           return (
             <RadioButton.Group key={x.id} onValueChange={() => onSelectAppart(x)} value={localAppId}>
@@ -407,51 +357,18 @@ export default function Apartment(props) {
 
       <Appbar style={styles.appartmentBottom}>
         <Text style={[styles.totalApartmentsText, poppisFont.regular]}>17 residents from your apartments are already part of Combuyn community</Text>
-=======
-        {apartmentList &&
-          apartmentList?.length > 0 &&
-          apartmentList.map((x, index) => {
-            return (
-              <RadioButton.Group
-                key={x.id}
-                onValueChange={() => onSelectAppart(x)}
-                value={localAppId}
-              >
-                <RadioButton.Item
-                  style={styles.radio_list}
-                  label={x.name}
-                  value={x.id}
-                />
-                {/* <RadioButton.Item style={styles.radio_list} label="Second item" value="second" /> */}
-              </RadioButton.Group>
-            );
-          })}
-      </ScrollView>
-
-      <Appbar style={styles.appartmentBottom}>
-        <Text style={styles.totalApartmentsText}>
-          {" "}
-          {appartmentId.userCount +
-            " residents from your apartments are already part of Combuyn community"}
-        </Text>
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
 
         <Pressable
           style={styles.appartmentButton}
           onPress={() => getcampaignAPIcallFunc()}
         >
-<<<<<<< HEAD
           <Text style={[styles.appartmentButtonText, poppisFont.medium]}
           >Continue</Text>
-=======
-          <Text style={styles.appartmentButtonText}>Continue</Text>
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
         </Pressable>
       </Appbar>
     </>
   );
 }
-<<<<<<< HEAD
 
 const poppisFont = StyleSheet.create({
   regular: {
@@ -464,5 +381,3 @@ const poppisFont = StyleSheet.create({
     fontFamily: 'PoppinsSemiBold'
   }
 });
-=======
->>>>>>> 11469580d0d2c5c25e872d3f473d27c6c0b85a4c
