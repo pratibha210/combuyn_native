@@ -124,7 +124,7 @@ export default function App() {
             <Stack.Screen name="Register" component={RegisterForm} />
             <Stack.Screen name="OTP" component={Otp} />
             <Stack.Screen name="Profile" component={Profile} />
-            {/* <Stack.Screen name="Address" component={Addaddress} /> */}
+            <Stack.Screen name="Address" component={Addaddress} />
             <Stack.Screen name="AddressList" component={AddressList} />
             <Stack.Screen name="Campaign" component={CampaignDetails} />
             <Stack.Screen name="Aboutus" component={AboutUs} />
