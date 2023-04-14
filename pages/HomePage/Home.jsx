@@ -1,7 +1,12 @@
 import { ScrollView, StyleSheet, Text, Image, Button, View, FlatList, Pressable, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 import styles from "./Home.style";
 import Environment from "../../Environment";
+
 
 import axios from "axios";
 // import CardView from "react-native-cardview";
@@ -13,6 +18,8 @@ import { Card, Title, Paragraph } from "react-native-paper";
 import { } from "react-native-web";
 import { useFonts } from "expo-font";
 import { FontAwesome } from '@expo/vector-icons';
+import slide1 from "../../assets/images/slide1.png"
+
 
 export default function Home(props) {
   // font
@@ -136,6 +143,42 @@ const [apartmentName,setApartmentName] = useState('');
             <View><Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi exercitationem dolorum debitis iusto fugiat? Excepturi perferendis quam corrupti, similique id itaque doloremque et assumenda facilis velit porro modi cupiditate magni.</Text></View>
           </FlatList>
         </View> */}
+
+        <View>
+          <Swiper 
+          slidesPerView={1.2}
+          pagination={true} 
+          modules={[Pagination]} 
+          className="homeSwiper">
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={slide1} />
+            </SwiperSlide>
+          </Swiper>
+        </View>
 
 
         <View style={styles.campaignsListWrap}>
